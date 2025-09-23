@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/github")
 public class GithubController {
 
     private final GithubClient githubClient;
@@ -20,7 +20,7 @@ public class GithubController {
         this.githubClient = githubClient;
     }
 
-    @GetMapping("/repos")
+    @GetMapping("/repositories")
     public ResponseEntity<List<RepositoryResponse>> listRepos(@RequestHeader("token") String token) {
 
         var repos = githubClient.listRepos("Bearer " + token, null, "public");

@@ -9,6 +9,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 
 public class GithubClientConfig {
+
     @Bean
     public HttpServiceProxyFactory httpServiceProxyFactory() {
         WebClient webClient = WebClient.builder()
@@ -17,6 +18,7 @@ public class GithubClientConfig {
 
         return HttpServiceProxyFactory.builderFor(WebClientAdapter.create(webClient)).build();
     }
+
     @Bean
     public GithubClient githubClient(HttpServiceProxyFactory factory) {
         return factory.createClient(GithubClient.class);
