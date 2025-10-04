@@ -1,1 +1,3 @@
-Consumindo API do github com java e spring boot
+API-GitHub
+
+API para consumir dados do GitHub usando Java + Spring Boot
