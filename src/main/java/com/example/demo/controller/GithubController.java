@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.client.GithubClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -21,10 +22,14 @@ public class GithubController {
     }
 
     @GetMapping("/repositories")
-    public ResponseEntity<List<RepositoryResponse>> listRepos(@RequestHeader("token") String token) {
+    public ResponseEntity<?> listRepos(@RequestHeader(value = "token", required = false) String token) {
+        if (token == null || token.isBlank()) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("Token de autenticação ausente. Por favor, envie o header 'token'.");
+        }
 
         var repos = githubClient.listRepos("Bearer " + token, null, "public");
-
         return ResponseEntity.ok(repos);
     }
 }
