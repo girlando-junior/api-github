@@ -27,9 +27,4 @@ public class GithubController {
 
         return ResponseEntity.ok(repos);
     }
-
-    @GetMapping("/ping")
-    public String ping() {
-        return "pong";
-    }
 }
