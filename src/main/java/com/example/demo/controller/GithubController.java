@@ -26,7 +26,7 @@ public class GithubController {
         if (token == null || token.isBlank()) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body("Token de autenticação ausente. Por favor, envie o header 'token'.");
+                    .body("A autenticação é obrigatória para acessar este recurso. Por favor, forneça um token válido.");
         }
 
         var repos = githubClient.listRepos("Bearer " + token, null, "public");
